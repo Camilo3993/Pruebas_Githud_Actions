@@ -10,3 +10,4 @@ Our data storage is:
 
 stores = {}
 items = {}
+camilo=2
