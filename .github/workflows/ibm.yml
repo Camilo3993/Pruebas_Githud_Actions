@@ -12,16 +12,6 @@ on:
   push:
     branches: [ "main" ]
 
-# Environment variables available to all jobs and steps in this workflow
-env:
-  GITHUB_SHA: ${{ github.sha }}
-  IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
-  IBM_CLOUD_REGION: us-south
-  ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}
-  REGISTRY_HOSTNAME: us.icr.io
-  IMAGE_NAME: iks-test
-  
-
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
@@ -44,20 +34,20 @@ jobs:
     # Authenticate with IBM Cloud CLI
     - name: Authenticate with IBM Cloud CLI
       run: |
-        ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g default
-        ibmcloud cr region-set "${IBM_CLOUD_REGION}"
+        ibmcloud login --apikey "Y-HEauco3N7zFroAUtDGNRMIC0ngcmCDCB-erAOZDChm" -r "us-south" -g default
+        ibmcloud cr region-set "us-south"
         ibmcloud cr login
 
     # Build the Docker image
     - name: Build with Docker
       run: |
-        docker build -t "$REGISTRY_HOSTNAME"/"$ICR_NAMESPACE"/"$IMAGE_NAME":"$GITHUB_SHA" \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" .
+        docker build -t "us.icr.io/ICR_NAMESPACE/iks-test:${{ github.sha }}" \
+          --build-arg GITHUB_SHA="${{ github.sha }}" \
+          --build-arg GITHUB_REF="${{ github.ref }}" .
 
     # Push the image to IBM Container Registry
     - name: Push the image to ICR
       run: |
-        docker push $REGISTRY_HOSTNAME/$ICR_NAMESPACE/$IMAGE_NAME:$GITHUB_SHA
+        docker push us.icr.io/ICR_NAMESPACE/iks-test:${{ github.sha }}
 
     
