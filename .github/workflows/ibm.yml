@@ -4,7 +4,7 @@
 #
 # 1. Ensure that your repository contains a Dockerfile
 # 2. Setup secrets in your repository by going to settings: Create ICR_NAMESPACE and IBM_CLOUD_API_KEY
-# 3. Change the values for the IBM_CLOUD_REGION, REGISTRY_HOSTNAME, IMAGE_NAME, IKS_CLUSTER, DEPLOYMENT_NAME, and PORT
+
 
 name: Build and Deploy to IKS
 
@@ -30,7 +30,7 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     # Download and Install IBM Cloud CLI
     - name: Install IBM Cloud CLI
