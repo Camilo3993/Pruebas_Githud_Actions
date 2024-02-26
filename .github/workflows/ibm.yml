@@ -56,5 +56,5 @@ jobs:
         CE_PROJECT_NAME: Code Engine Huemul-FID
         CE_APP_NAME: demo-seba1-hello-world
         REGISTRY: us.icr.io
-        CE_REGISTRY_SECRET: "registry-secret"
+        CE_REGISTRY_SECRET: "Y-HEauco3N7zFroAUtDGNRMIC0ngcmCDCB-erAOZDChm"
     
