@@ -41,7 +41,8 @@ jobs:
     # Build the Docker image
     - name: Build Docker image
       run: |
-        docker build -t us.icr.io/huemulnamespace/code-engine:${{ github.sha }} .
+        echo "NOW=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        docker build -t us.icr.io/huemulnamespace/code-engine:${{ github.sha }} -$NOW .\
         
     
     # Push the image to IBM Container Registry

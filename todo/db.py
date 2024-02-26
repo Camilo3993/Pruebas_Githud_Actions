@@ -10,7 +10,3 @@ Our data storage is:
 
 stores = {}
 items = {}
-camilo="2344"
-campos="""
-camilo campos campos camilo
-"""
