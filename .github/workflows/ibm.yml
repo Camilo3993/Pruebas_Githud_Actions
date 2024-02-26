@@ -41,7 +41,7 @@ jobs:
     # Build the Docker image
     - name: Build with Docker
       run: |
-        docker build -t "us.icr.io/ICR_NAMESPACE/iks-test:${{ github.sha }}" \
+        docker build -t "us.icr.io/huemulnamespace/iks-test:${{ github.sha }}" \
           --build-arg GITHUB_SHA="${{ github.sha }}" \
           --build-arg GITHUB_REF="${{ github.ref }}" .
 
