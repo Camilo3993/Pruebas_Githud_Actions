@@ -5,6 +5,8 @@
 # 1. Ensure that your repository contains a Dockerfile
 # 2. Setup secrets in your repository by going to settings: Create ICR_NAMESPACE and IBM_CLOUD_API_KEY
 
+env:
+  CURRENT_DATE: $(date +'%Y-%m-%d')  # Define la variable en el entorno
 
 name: Build and Deploy to IBM Code engine
 
@@ -41,9 +43,8 @@ jobs:
     # Build the Docker image
     - name: Build Docker image
       run: |
-        # Get the current date in YYYY-MM-DD format
-        CURRENT_DATE=$(date +'%Y-%m-%d')
-        docker build -t us.icr.io/huemulnamespace/iks-test:${{ CURRENT_DATE }}-${{ github.sha }} \
+        
+        docker build -t us.icr.io/huemulnamespace/iks-test:${{ env.CURRENT_DATE }}-${{ github.sha }} \
         
     
     # Push the image to IBM Container Registry
