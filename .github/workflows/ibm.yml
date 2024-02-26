@@ -41,20 +41,10 @@ jobs:
     # Build the Docker image
     - name: Build with Docker
       run: |
-        docker build -t "us.icr.io/huemulnamespace/iks-test:${{ github.sha }}" \
+        echo "NOW=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        docker build -t "us.icr.io/huemulnamespace/code-engine:${{ github.sha }}-$(NOW)" \
           --build-arg GITHUB_SHA="${{ github.sha }}" \
           --build-arg GITHUB_REF="${{ github.ref }}" .
 
-    # Push the image to IBM Container Registry
-    - name: Update in IBM Cloud Code Engine
-      uses: dprosper/icce-cud-cli@v0.4.3
-      with:
-        IMAGE: us.icr.io/huemulnamespace/iks-test:${{ github.sha }}
-        REGISTRY_USER: "camilo.campos@huemulsolutions.com"
-        REGISTRY_PASSWORD: "Camidad2332@"
-        CE_ACTION: update
-        CE_PROJECT_NAME: Code Engine Huemul-FID
-        CE_APP_NAME: demo-seba1-hello-world
-        REGISTRY: us.icr.io
-        CE_REGISTRY_SECRET: "Y-HEauco3N7zFroAUtDGNRMIC0ngcmCDCB-erAOZDChm"
+    
     
