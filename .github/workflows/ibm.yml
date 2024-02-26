@@ -6,7 +6,7 @@
 # 2. Setup secrets in your repository by going to settings: Create ICR_NAMESPACE and IBM_CLOUD_API_KEY
 
 
-name: Build and Deploy to IKS
+name: Build and Deploy to IBM Code engine
 
 on:
   push:
@@ -28,8 +28,8 @@ jobs:
         curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
         ibmcloud --version
         ibmcloud config --check-version=false
-        ibmcloud plugin install -f kubernetes-service
         ibmcloud plugin install -f container-registry
+        ibmcloud plugin install -f code-engine
 
     # Authenticate with IBM Cloud CLI
     - name: Authenticate with IBM Cloud CLI
@@ -46,8 +46,15 @@ jobs:
           --build-arg GITHUB_REF="${{ github.ref }}" .
 
     # Push the image to IBM Container Registry
-    - name: Push the image to ICR
-      run: |
-        docker push us.icr.io/huemulnamespace/iks-test:${{ github.sha }}
-
+    - name: Update in IBM Cloud Code Engine
+      uses: dprosper/icce-cud-cli@v0.4.3
+      with:
+        IMAGE: us.icr.io/huemulnamespace/iks-test:${{ github.sha }}
+        REGISTRY_USER: "camilo.campos@huemulsolutions.com"
+        REGISTRY_PASSWORD: "Camidad2332@"
+        CE_ACTION: update
+        CE_PROJECT_NAME: Code Engine Huemul-FID
+        CE_APP_NAME: demo-seba1-hello-world
+        REGISTRY: us.icr.io
+        CE_REGISTRY_SECRET: "registry-secret"
     
