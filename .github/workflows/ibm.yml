@@ -48,6 +48,6 @@ jobs:
     # Push the image to IBM Container Registry
     - name: Push the image to ICR
       run: |
-        docker push us.icr.io/ICR_NAMESPACE/iks-test:${{ github.sha }}
+        docker push us.icr.io/huemulnamespace/iks-test:${{ github.sha }}
 
     
