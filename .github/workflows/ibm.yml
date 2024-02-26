@@ -39,12 +39,8 @@ jobs:
         ibmcloud cr login
 
     # Build the Docker image
-    - name: Build with Docker
+    - name: Build and push Docker image
       run: |
-        echo "NOW=$(date +'%Y%m%d')" >> $GITHUB_ENV
-        docker build -t "us.icr.io/huemulnamespace/code-engine:${{ github.sha }}-$(NOW)" \
-          --build-arg GITHUB_SHA="${{ github.sha }}" \
-          --build-arg GITHUB_REF="${{ github.ref }}" .
-
-    
+        docker build -t us.icr.io/huemulnamespace/iks-test:${{ github.sha }} .
+        docker push us.icr.io/huemulnamespace/iks-test:${{ github.sha }}
     
