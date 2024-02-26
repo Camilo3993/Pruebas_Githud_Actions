@@ -12,5 +12,5 @@ stores = {}
 items = {}
 camilo="2344"
 campos="""
-camilo campos
+camilo campos campos camilo
 """

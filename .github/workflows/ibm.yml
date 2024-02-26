@@ -39,8 +39,13 @@ jobs:
         ibmcloud cr login
 
     # Build the Docker image
-    - name: Build and push Docker image
+    - name: Build Docker image
       run: |
         docker build -t us.icr.io/huemulnamespace/code-engine:${{ github.sha }} .
-        docker push us.icr.io/huemulnamespace/code-engine:${{ github.sha }}
+        
+    
+    # Push the image to IBM Container Registry
+    - name: Push the image to ICR
+      run: |
+        docker push us.icr.io/huemulnamespace/iks-test:${{ github.sha }}
     
