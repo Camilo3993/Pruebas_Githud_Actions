@@ -44,7 +44,7 @@ jobs:
     - name: Build Docker image
       run: |
         
-        docker build -t us.icr.io/huemulnamespace/iks-test:${{ env.CURRENT_DATE }}-${{ github.sha }} \
+        docker build -t us.icr.io/huemulnamespace/code-engine:${{ github.sha }} \
         
     
     # Push the image to IBM Container Registry
