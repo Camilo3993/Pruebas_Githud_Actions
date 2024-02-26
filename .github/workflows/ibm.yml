@@ -41,8 +41,9 @@ jobs:
     # Build the Docker image
     - name: Build Docker image
       run: |
-        echo "NOW=$(date +'%Y%m%d')" >> $GITHUB_ENV
-        docker build -t us.icr.io/huemulnamespace/code-engine:${{ github.sha }} -$NOW .\
+        # Get the current date in YYYY-MM-DD format
+        CURRENT_DATE=$(date +'%Y-%m-%d')
+        docker build -t us.icr.io/huemulnamespace/iks-test:${{ CURRENT_DATE }}-${{ github.sha }} \
         
     
     # Push the image to IBM Container Registry
