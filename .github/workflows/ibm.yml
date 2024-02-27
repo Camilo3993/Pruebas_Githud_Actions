@@ -5,8 +5,7 @@
 # 1. Ensure that your repository contains a Dockerfile
 # 2. Setup secrets in your repository by going to settings: Create ICR_NAMESPACE and IBM_CLOUD_API_KEY
 
-env:
-  CURRENT_DATE: $(date +'%Y-%m-%d')  # Define la variable en el entorno
+
 
 name: Build and Deploy to IBM Code engine
 
@@ -51,4 +50,12 @@ jobs:
     - name: Push the image to ICR
       run: |
         docker push us.icr.io/huemulnamespace/code-engine:${{ github.sha }}
+
+    - name: Update in IBM Cloud Code Engine
+        uses: dprosper/icce-cud-cli@v0.4.3
+        with:
+          CE_PROJECT_NAME: Code Engine Huemul-FID
+          CE_APP_NAME: epysa-2
+          IMAGE: huemulnamespace/code-engine:${{ github.sha }}:latest
+          CE_ACTION: update
     
