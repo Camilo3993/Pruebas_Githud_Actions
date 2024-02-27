@@ -52,9 +52,7 @@ jobs:
         docker push us.icr.io/huemulnamespace/code-engine:${{ github.sha }}
 
     - name: Update in IBM Cloud Code Engine
-        with:
-          CE_PROJECT_NAME: Code Engine Huemul-FID
-          CE_APP_NAME: epysa-2
-          IMAGE: huemulnamespace/code-engine:${{ github.sha }}:latest
-          CE_ACTION: update
+      run : |
+        ibmcloud ce app update --name epysa-2 --image huemulnamespace/code-engine:${{ github.sha }}:latest --registry-secret githud-actions
+        
     
