@@ -52,7 +52,7 @@ jobs:
         docker push us.icr.io/huemulnamespace/code-engine:${{ github.sha }}
 
     - name: Update in IBM Cloud Code Engine
-        uses: dprosper/icce-cud-cli@v0.4.3
+        uses: actions/checkout@v4
         with:
           CE_PROJECT_NAME: Code Engine Huemul-FID
           CE_APP_NAME: epysa-2
