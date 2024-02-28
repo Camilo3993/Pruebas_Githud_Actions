@@ -31,13 +31,14 @@ jobs:
         ibmcloud config --check-version=false
         ibmcloud plugin install -f container-registry
         ibmcloud plugin install -f code-engine
+        ibmcloud plugin install project
 
     # Authenticate with IBM Cloud CLI
     - name: Authenticate with IBM Cloud CLI
       run: |
         ibmcloud login --apikey "Y-HEauco3N7zFroAUtDGNRMIC0ngcmCDCB-erAOZDChm" -r "us-south" -g Pruebas-Huemul
         ibmcloud cr region-set "us-south"
-        ibmcloud target -g Code Engine Huemul-FID
+        ibmcloud ce project select --name Code Engine Huemul-FID
         ibmcloud cr login
 
     # Build the Docker image
