@@ -11,7 +11,7 @@ name: Build and Deploy to IBM Code engine
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "test" ]
 
 jobs:
   setup-build-publish-deploy:
