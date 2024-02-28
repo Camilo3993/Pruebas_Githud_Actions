@@ -38,7 +38,6 @@ jobs:
       run: |
         ibmcloud login --apikey "Y-HEauco3N7zFroAUtDGNRMIC0ngcmCDCB-erAOZDChm" -r "us-south" -g Pruebas-Huemul
         ibmcloud cr region-set "us-south"
-        ibmcloud ce project select --name Code Engine Huemul-FID
         ibmcloud cr login
 
     # Build the Docker image
@@ -55,7 +54,7 @@ jobs:
 
     - name: Update in IBM Cloud Code Engine
       run: |
-        ibmcloud ce app update --name demo-seba1-hello-world --image /huemulnamespace/code-engine:${{ github.sha }}:latest 
+        ibmcloud ce app update --name Code Engine Huemul-FID/demo-seba1-hello-world --image /huemulnamespace/code-engine:${{ github.sha }}:latest 
 
 
     #- name: Checkout código
