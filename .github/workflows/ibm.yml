@@ -37,7 +37,7 @@ jobs:
       run: |
         ibmcloud login --apikey "Y-HEauco3N7zFroAUtDGNRMIC0ngcmCDCB-erAOZDChm" -r "us-south" -g Pruebas-Huemul
         ibmcloud cr region-set "us-south"
-        ibmcloud cr project select --name Code Engine Huemul-FID
+        ibmcloud target -g Code Engine Huemul-FID
         ibmcloud cr login
 
     # Build the Docker image
